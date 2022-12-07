@@ -5,7 +5,7 @@ import { local_db } from './localDB';
 import { ReqBodyHasErrors, videoIsExist } from './CheckReqBodyAndURI';
 
 export const app = express();
-const port = 3003;
+const port = process.env.PORT || 3003;
 
 const jsonBodyMiddleware = express.json();
 app.use(jsonBodyMiddleware);

@@ -9,7 +9,7 @@ const HTTPStatusCodes_1 = require("./HTTPStatusCodes");
 const localDB_1 = require("./localDB");
 const CheckReqBodyAndURI_1 = require("./CheckReqBodyAndURI");
 exports.app = (0, express_1.default)();
-const port = 3003;
+const port = process.env.PORT || 3003;
 const jsonBodyMiddleware = express_1.default.json();
 exports.app.use(jsonBodyMiddleware);
 let db = [...localDB_1.local_db];
