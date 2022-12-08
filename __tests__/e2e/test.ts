@@ -4,11 +4,11 @@ import * as models from '../../src/models';
 import { app } from "../../src";
 import { HTTP } from "../../src/HTTPStatusCodes";
 
-describe('/ht_01/api/testing/all-data', () => {
+describe('/hometask_01/api/testing/all-data', () => {
   // TEST #1
   it('should delete all videos and return empty array', async () => {
     await request(app)
-      .delete('/ht_01/api/testing/all-data')
+      .delete('/hometask_01/api/testing/all-data')
       .expect(HTTP.NO_CONTENT_204);
   });
 });
@@ -17,7 +17,7 @@ describe('/hometask_01/api/videos', () => {
   let video1: models.h01_Video;
 
   beforeAll(async () => {
-    await request(app).delete('/ht_01/api/testing/all-data');
+    await request(app).delete('/hometask_01/api/testing/all-data');
   }); // db = [];
 
   // TEST #2
@@ -27,7 +27,7 @@ describe('/hometask_01/api/videos', () => {
       .expect(HTTP.OK_200, []);
   }); // db = [];
 
-  // TEST #3
+  // TEST #3 - err
   it('should return 400 and error messages (incorrect input)', async () => {
     const reqBody = { title: 'string' };
     const resBody = {
@@ -45,7 +45,7 @@ describe('/hometask_01/api/videos', () => {
       .expect(HTTP.BAD_REQUEST_400, resBody);
   }) // db = [];
 
-  // TEST #4
+  // TEST #4 - err
   it('should return 201 and created video', async () => {
     const reqBody = { title: 'string', author: 'string' };
 
@@ -71,7 +71,7 @@ describe('/hometask_01/api/videos', () => {
     video1 = video;
   }) // db = [{id:1, title: 'string'}];
 
-  // TEST #5
+  // TEST #5 - err
   it('should return 200 and existed video with id 1', async () => {
     const response = await request(app)
       .get(`/hometask_01/api/videos/${video1.id}`);
@@ -101,7 +101,7 @@ describe('/hometask_01/api/videos', () => {
       .expect(HTTP.NOT_FOUND_404);
   }); // db = [{id:1, title: 'string'}];
 
-  // TEST #8
+  // TEST #8 - err
   it('should return 400 and error messages (input is incorrect)', async () => {
     const reqBody = { author: 'new' };
     const resBody = {
@@ -119,7 +119,7 @@ describe('/hometask_01/api/videos', () => {
       .expect(HTTP.BAD_REQUEST_400, resBody);
   }); // db = [{id:1, title: 'string'}];
 
-  // TEST #9
+  // TEST #9 - err
   it('should return 204 and video with id 1 will be changed', async () => {
     const reqBody = { title: 'new', author: 'string' };
 
@@ -136,7 +136,7 @@ describe('/hometask_01/api/videos', () => {
       .expect(HTTP.NOT_FOUND_404);
   }); // db = [{id:1, title: 'new'}];
 
-  // TEST #11
+  // TEST #11 - err
   it('should return 204 and video with id 1 will be deleted', async () => {
     await request(app)
       .delete('/hometask_01/api/videos/1')
@@ -144,7 +144,7 @@ describe('/hometask_01/api/videos', () => {
   }); // db = [];
 
   // TEST #12
-  it('should return 200 and empty array', async () => {
+  it('should return 200', async () => {
     await request(app)
       .get('/hometask_01/api/videos')
       .expect(HTTP.OK_200);

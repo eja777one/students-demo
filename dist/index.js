@@ -80,9 +80,10 @@ exports.app.delete('/hometask_01/api/videos/:id', (req, res) => {
         res.sendStatus(HTTPStatusCodes_1.HTTP.NO_CONTENT_204); // TEST #11
     }
 });
-exports.app.delete('/ht_01/api/testing/all-data', (req, res) => {
+exports.app.delete('/hometask_01/api/testing/all-data', (req, res) => {
     db = [];
     res.sendStatus(HTTPStatusCodes_1.HTTP.NO_CONTENT_204); // TEST #1
+    return;
 });
 exports.app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

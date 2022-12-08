@@ -57,17 +57,21 @@ const ReqBodyHasErrors = (body) => {
         }
     }
     ;
-    // if (body.canBeDownloaded) { };
+    if (body.canBeDownloaded !== true || body.canBeDownloaded !== false) {
+        errors.push({
+            message: 'incorrect canBeDownloaded',
+            field: 'canBeDownloaded'
+        });
+    }
+    ;
     if (body.minAgeRestriction) {
-        if (body.minAgeRestriction < 1
-            || body.minAgeRestriction > 18
-            || body.minAgeRestriction !== null) {
+        const age = body.minAgeRestriction;
+        if (!(age >= 1 && age <= 18 || age === null)) {
             errors.push({
                 message: 'incorrect minAgeRestriction',
                 field: 'minAgeRestriction'
             });
         }
-        ;
     }
     ;
     if (body.publicationDate) {

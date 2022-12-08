@@ -91,9 +91,10 @@ app.delete('/hometask_01/api/videos/:id', (req: Request, res: Response) => {
   }
 });
 
-app.delete('/ht_01/api/testing/all-data', (req: Request, res: Response) => {
+app.delete('/hometask_01/api/testing/all-data', (req: Request, res: Response) => {
   db = [];
   res.sendStatus(HTTP.NO_CONTENT_204); // TEST #1
+  return;
 });
 
 app.listen(port, () => {
