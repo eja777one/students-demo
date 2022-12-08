@@ -57,13 +57,15 @@ const ReqBodyHasErrors = (body) => {
         }
     }
     ;
-    if (body.canBeDownloaded !== true || body.canBeDownloaded !== false) {
-        errors.push({
-            message: 'incorrect canBeDownloaded',
-            field: 'canBeDownloaded'
-        });
+    if (body.canBeDownloaded) {
+        if (typeof body.canBeDownloaded !== "boolean") {
+            errors.push({
+                message: 'incorrect canBeDownloaded',
+                field: 'canBeDownloaded'
+            });
+        }
+        ;
     }
-    ;
     if (body.minAgeRestriction) {
         const age = body.minAgeRestriction;
         if (!(age >= 1 && age <= 18 || age === null)) {

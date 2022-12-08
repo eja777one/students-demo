@@ -33,7 +33,7 @@ export const ReqBodyHasErrors = (body: any): models.APIErrorResult | boolean => 
 	};
 
 	if (body.canBeDownloaded) {
-		if (body.canBeDownloaded !== true || body.canBeDownloaded !== false) {
+		if (typeof body.canBeDownloaded !== "boolean") {
 			errors.push({
 				message: 'incorrect canBeDownloaded',
 				field: 'canBeDownloaded'
